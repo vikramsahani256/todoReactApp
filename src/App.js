@@ -11,6 +11,7 @@ import React , {useState , useEffect} from 'react';
 
 
 function App() {
+  
   let initTodo;
   if(localStorage.getItem("todos") === null){
     initTodo = []
@@ -18,7 +19,14 @@ function App() {
     initTodo = JSON.parse(localStorage.getItem("todos"))
   }
 
+  console.log("initTodo====",initTodo);
+
   let [todos,setTodos  ] = useState(initTodo);
+  useEffect(() => {
+    console.log("in use effect in app.js",todos) ;
+    debugger
+    todos = initTodo ;
+  }, [initTodo])
 
   const addTodo = (title, desc) => {
     console.log("I am adding this todo", title, desc)
@@ -28,16 +36,16 @@ function App() {
       title       : title,
       description : desc,
     }
+    console.log("=====[...todos, myTodo]=====",[...todos, myTodo])
+    debugger
+    todos = JSON.parse(localStorage.getItem("todos")) ; 
     setTodos([...todos, myTodo]);
     
     localStorage.setItem("todos",JSON.stringify(todos)) ;
     console.log(myTodo);
   }
 
-  useEffect(() => {
-    console.log("in use effect in app.js") ;
 
-  }, [todos])
 
 
   return (

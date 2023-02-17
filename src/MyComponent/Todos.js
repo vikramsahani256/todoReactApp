@@ -13,16 +13,22 @@ const Todos = (props) => {
     
   }, [props.my_todo_list])
 
-let myTodoList = props.my_todo_list ; 
+// let myTodoList = props.my_todo_list ; 
 
-let [todos,setTodo] = useState(myTodoList);
+let [todos,setTodo] = useState(props.my_todo_list);
 
 const onDelete = (task) =>{
   console.log("I am Deleted! ",task);
-  todos =  todos.filter((item)=>item !== task) ;
- setTodo(todos); // set the values in todo array
- localStorage.setItem("todos",JSON.stringify(todos)) ;
+  console.log("=======before delete =======",todos);
 
+  todos =  todos.filter((item)=>item !== task) ;
+  console.log("=======after delete =======",todos);
+  setTodo(todos); // set the values in todo array
+  console.log("=======after delete ===2222====",todos);
+
+  localStorage.setItem("todos",JSON.stringify(todos)) ;
+
+  console.log("get local storage====>>>>",JSON.parse(localStorage.getItem("todos")))
 }
 
 
