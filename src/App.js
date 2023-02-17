@@ -24,7 +24,7 @@ function App() {
   let [todos,setTodos  ] = useState(initTodo);
   useEffect(() => {
     console.log("in use effect in app.js",todos) ;
-    debugger
+    
     todos = initTodo ;
   }, [initTodo])
 
@@ -37,7 +37,7 @@ function App() {
       description : desc,
     }
     console.log("=====[...todos, myTodo]=====",[...todos, myTodo])
-    debugger
+    
     todos = JSON.parse(localStorage.getItem("todos")) ; 
     setTodos([...todos, myTodo]);
     
